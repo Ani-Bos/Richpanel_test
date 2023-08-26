@@ -38,7 +38,7 @@ mongoose
 // await mongoconnect();
 app.use("/api/auth", user);
 app.use("/sub", filter, SubscriptionRouter);
-app.use("/api/pay",filter,PaymentRouter)
+app.use("/pay",filter,PaymentRouter)
 // app.use('/api',Meet)
 app.get("/", (req, res) => {
   res.send("hello");

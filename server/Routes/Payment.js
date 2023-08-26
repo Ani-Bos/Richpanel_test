@@ -22,7 +22,6 @@ router.post("/process-payment", filter , async (req, res) => {
       payment_method: paymentMethodId,
       confirm: true,
     });
-
     // If payment is successful, send a success response
     res.json({ success: true });
   } catch (error) {

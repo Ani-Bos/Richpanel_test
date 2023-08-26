@@ -1,37 +1,75 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-const Table = () => {
+const Table = ({ onLastActiveDataChange }) => {
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
   const [active, setActive] = useState(0);
   const [lastactive, setLastactive] = useState([]);
-  const[plans,setPlans]=useState([])
-  useEffect(() => {
-    // console.log(active);
-    // console.log(lastactive)
-     console.log(`active : ${active}`);
-     console.log(plans);
-     const authToken = Cookies.get("auth-Tokensynex"); // Get the token from the cookie
+  const [plans, setPlans] = useState([]);
+  // useEffect(() => {
+  //   console.log(active);
+  //   console.log(lastactive);
+  //   console.log(`active : ${active}`);
+  //   //  console.log(plans);
+  //   //  const authToken = Cookies.get("auth-Tokensynex"); // Get the token from the cookie
 
-    const fetchPlans = async () => {
-      // console.log(`auth token : ${authToken}`)
-      const resp = await fetch("http://localhost:5000/sub/subscription-plans", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "authorization": `Bearer ${authToken}`,
-        },
-      });
-      const data = await resp.json();
-      console.log(`data : ${data}`)
-      setPlans(data.plans)
-    }
-    fetchPlans();
-  }, [active, plans]);
-  
+  //   // const fetchPlans = async () => {
+  //   //   // console.log(`auth token : ${authToken}`)
+  //   //   const resp = await fetch("http://localhost:5000/sub/subscription-plans", {
+  //   //     method: "POST",
+  //   //     headers: {
+  //   //       "Content-Type": "application/json",
+  //   //       "authorization": `Bearer ${authToken}`,
+  //   //     },
+  //   //   });
+  //   //   const data = await resp.json();
+  //   //   console.log(`data : ${data}`)
+  //   //   setPlans(data.plans)
+  //   // }
+  //   // fetchPlans();
+  // }, [active, plans]);
+    useEffect(() => {
+      // Update the last active data when active or isChecked changes
+      if (active >= 0) {
+        let newData = [];
+        if (active === 0) {
+          newData.push({
+            type: "Mobile",
+            price: isChecked ? 1000 : 100,
+            resolution: "480p",
+            devices: ["Phone", "Tablet"],
+          });
+        } else if (active === 1) {
+          newData.push({
+            type: "Basic",
+            price: isChecked ? 2000 : 200,
+            resolution: "480p",
+            devices: ["Phone", "Tablet", "Computer", "TV"],
+          });
+        } else if (active === 2) {
+          newData.push({
+            type: "Standard",
+            price: isChecked ? 5000 : 500,
+            resolution: "1080p",
+            devices: ["Phone", "Tablet", "Computer", "TV"],
+          });
+        } else if (active === 3) {
+          newData.push({
+            type: "Premium",
+            price: isChecked ? 7000 : 700,
+            resolution: "4K+HDR",
+            devices: ["Phone", "Tablet", "Computer", "TV"],
+          });
+        }
+        setLastactive(newData);
+        onLastActiveDataChange(newData); // Call the prop function to pass the data
+      }
+    }, [active, isChecked, onLastActiveDataChange]);
+
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
