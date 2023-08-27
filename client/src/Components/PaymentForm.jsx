@@ -5,9 +5,7 @@ import { useLocation } from "react-router-dom";
 import Table from "./Table"; 
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-const stripePromise = loadStripe(
-  "pk_test_51Nj69ASHOFbuBWHfmt9DWtFAeZDyz08ODniPUsxjUXJ1SiGPs6Eo1IZXDSIa2wT3r9O4NAQiJRSctwpJGL9ooXsF00pQlgBjnZ"
-);
+const stripePromise = loadStripe("STRIPE_PUBLISHABLE_KEY");
 
 function PaymentForm({ host }) {
   let navigate=useNavigate()

@@ -5,8 +5,7 @@ import filter from "../Middleware/Middleware.js";
 dotenv.config();
 
 const router = express.Router();
-const stripeSecretKey =
-  "sk_test_51Nj69ASHOFbuBWHfuaaWtY2xflqnPF7AYOrsmH8oHxB8v2WXIWwg5JqS9et4BIPrz9Pg5sWV4sQBtYBMAIXEuxUf00wmPPKFYo";
+const stripeSecretKey = "STRIPE_SECRET_KEY";
 const stripeClient = new stripe(stripeSecretKey);
 
 router.post("/process-payment", filter , async (req, res) => {
