@@ -14,6 +14,7 @@ import mongoose from "mongoose";
 import SubscriptionPlan from "./Model/Subscription.js";
 import plansData from "./Constant/Data.js";
 import PaymentRouter from "./Routes/Payment.js"
+import PlanRoute from './Routes/Plan.js'
 const PORT = process.env.PORT || 5000;
 const dburl = "mongodb://localhost:27017/Subscription";
 
@@ -37,8 +38,9 @@ mongoose
 // const mongoose = require("mongoose");
 // await mongoconnect();
 app.use("/api/auth", user);
-app.use("/sub", filter, SubscriptionRouter);
-app.use("/pay",filter,PaymentRouter)
+app.use("/sub", SubscriptionRouter);
+app.use("/pay",PaymentRouter)
+app.use("/plan",PlanRoute)
 // app.use('/api',Meet)
 app.get("/", (req, res) => {
   res.send("hello");

@@ -11,10 +11,10 @@ const stripeClient = new stripe(stripeSecretKey);
 
 router.post("/process-payment", filter , async (req, res) => {
   try {
-    const { paymentMethodId, planId } = req.body;
-    const selectedPlan = await SubscriptionPlan.findById(planId);
+    const { price } = req.body;
+    // const selectedPlan = await SubscriptionPlan.findById(planId);
     // Calculate the payment amount based on the selected plan
-    const paymentAmount = selectedPlan.monthlyPrice * 100; // Stripe requires amount in cents
+    const paymentAmount = price * 100; // Stripe requires amount in cents
     // Create a payment intent
     const paymentIntent = await stripeClient.paymentIntents.create({
       amount: paymentAmount,
@@ -28,6 +28,25 @@ router.post("/process-payment", filter , async (req, res) => {
     console.error("Error processing payment:", error);
     res.status(500).json({ success: false, error: "Payment failed" });
   }
+});
+
+
+router.post("/create-payment-intent", async (req, res) => {
+  const { price } = req.body;
+
+
+  const paymentIntent = await stripeClient.paymentIntents.create({
+    amount: parseInt(price)*100,
+    currency: "inr",
+
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
 
 export default router;

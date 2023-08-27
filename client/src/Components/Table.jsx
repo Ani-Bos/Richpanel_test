@@ -14,7 +14,7 @@ const Table = ({ onLastActiveDataChange }) => {
   //   console.log(lastactive);
   //   console.log(`active : ${active}`);
   //   //  console.log(plans);
-  //   //  const authToken = Cookies.get("auth-Tokensynex"); // Get the token from the cookie
+    //  const authToken = Cookies.get("auth-Tokensynex"); // Get the token from the cookie
 
   //   // const fetchPlans = async () => {
   //   //   // console.log(`auth token : ${authToken}`)
@@ -38,6 +38,7 @@ const Table = ({ onLastActiveDataChange }) => {
         if (active === 0) {
           newData.push({
             type: "Mobile",
+            checked:isChecked,
             price: isChecked ? 1000 : 100,
             resolution: "480p",
             devices: ["Phone", "Tablet"],
