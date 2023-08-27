@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import axios from "axios";
 import Cookies from "js-cookie";
-const Login = () => {
+const Login = ({ host }) => {
   let navigate = useNavigate();
 
   const [credential, setCredential] = useState({ email: "", password: "" });
@@ -33,28 +33,26 @@ const Login = () => {
     );
     Cookies.set("email", email);
     Cookies.set("name", name);
-    const url = "http://localhost:5000/api/auth";
+    const url = `${host}/api/auth`;
     //server
     const resp = await fetch(`${url}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: credential.email })
+      body: JSON.stringify({ email: credential.email }),
     });
     const res = await resp.json();
     // for (let i of res) {
 
-
-    
     //   console.log(`i : ${i} &&& res[i] : ${res[i]}`)
     // }
-    console.log(`res : ${{...res}}`)
+    console.log(`res : ${{ ...res }}`);
     console.log(`inside login res.authToken : ${res.authToken}`);
     Cookies.set("auth-Tokensynex", res.authToken);
     navigate("/dashboard");
   };
-  
+
   const handleSign = (e) => {
     setCredential({ ...credential, [e.target.name]: e.target.value });
   };

@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config();
+
 import express from "express";
 import cors from "cors";
 import path from "path";
@@ -15,12 +15,14 @@ import SubscriptionPlan from "./Model/Subscription.js";
 import plansData from "./Constant/Data.js";
 import PaymentRouter from "./Routes/Payment.js"
 import PlanRoute from './Routes/Plan.js'
+dotenv.config();
 const PORT = process.env.PORT || 5000;
-const dburl = "mongodb://localhost:27017/Subscription";
+const dburl =
+  "mongodb+srv://<user>:<password>@cluster0.jzadva4.mongodb.net/?retryWrites=true&w=majority";;
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 mongoose
   .connect(`${dburl}`, {
@@ -40,7 +42,7 @@ mongoose
 app.use("/api/auth", user);
 app.use("/sub", SubscriptionRouter);
 app.use("/pay",PaymentRouter)
-app.use("/plan",PlanRoute)
+app.use("/api/plan",PlanRoute)
 // app.use('/api',Meet)
 app.get("/", (req, res) => {
   res.send("hello");
@@ -63,6 +65,11 @@ app.get("/", (req, res) => {
 const insertPlans = async () => {
   try {
     // await mongoconnect(); // Connect to the database
+    const subscription = await SubscriptionPlan.find();
+    if (subscription.length!==0)
+    {
+      return;
+      }
     await SubscriptionPlan.insertMany(plansData);
     console.log("Plans inserted successfully.");
   } catch (error) {

@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const SignUp = (props) => {
+const SignUp = ({props,host}) => {
   let navigate = useNavigate();
   const [credential, setCredential] = useState({ email: "", password: "" });
   //It defines a state variable called credential using the useState hook which holds the user's email and password.
@@ -34,7 +34,7 @@ const SignUp = (props) => {
       );
       Cookies.set("email", email);
       Cookies.set("name", name);
-      const url = "http://localhost:5000/api/auth";
+      const url = `${host}/api/auth`;
       // Server
       // const resp = await axios.post(
       //   `${url}/createUser`,

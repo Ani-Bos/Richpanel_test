@@ -17,7 +17,7 @@ const Dashboard = () => {
   };
   return (
     <div>
-      <p className="text-center font-semibold text-lg">
+      <p className="text-center font-semibold text-lg mt-4">
         Choose the right plan for you
       </p>
       <div className="mt-4">
@@ -27,7 +27,7 @@ const Dashboard = () => {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="bg-[#10294d] rounded-sm text-white text-xl px-20 py-4 my-8 m-auto  flex justify-center"
+          className="bg-[#10294d] rounded-sm text-white text-xl px-16 py-2 my-8 m-auto  flex justify-center"
         >
           Next
         </button>

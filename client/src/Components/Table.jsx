@@ -46,6 +46,7 @@ const Table = ({ onLastActiveDataChange }) => {
         } else if (active === 1) {
           newData.push({
             type: "Basic",
+            checked:isChecked,
             price: isChecked ? 2000 : 200,
             resolution: "480p",
             devices: ["Phone", "Tablet", "Computer", "TV"],
@@ -53,6 +54,7 @@ const Table = ({ onLastActiveDataChange }) => {
         } else if (active === 2) {
           newData.push({
             type: "Standard",
+            checked: isChecked,
             price: isChecked ? 5000 : 500,
             resolution: "1080p",
             devices: ["Phone", "Tablet", "Computer", "TV"],
@@ -60,6 +62,7 @@ const Table = ({ onLastActiveDataChange }) => {
         } else if (active === 3) {
           newData.push({
             type: "Premium",
+            checked: isChecked,
             price: isChecked ? 7000 : 700,
             resolution: "4K+HDR",
             devices: ["Phone", "Tablet", "Computer", "TV"],
@@ -72,8 +75,8 @@ const Table = ({ onLastActiveDataChange }) => {
 
 
   return (
-    <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="mx-[10rem]">
+      <div className="relative overflow-x-auto sm:rounded-lg">
         <table className="w-full text-sm text-left text-black ">
           <thead className="text-xs text-black">
             <tr>
@@ -104,7 +107,7 @@ const Table = ({ onLastActiveDataChange }) => {
               <th scope="col" className="px-6 py-3">
                 {/* 1E4D91 */}
                 <div
-                  className={`bg-gray-500 w-20 h-20 text-center text-white font-normal justify-center py-8 cursor-pointer`}
+                  className={`bg-gray-500  h-20 text-center text-white font-normal justify-center py-8 cursor-pointer`}
                   onClick={() => {
                     setActive(0);
                     setLastactive([
@@ -124,7 +127,7 @@ const Table = ({ onLastActiveDataChange }) => {
               </th>
               <th scope="col" className="px-6 py-3">
                 <div
-                  className="bg-gray-500 w-20 h-20 text-center text-white font-normal justify-center py-8 cursor-pointer"
+                  className="bg-gray-500  h-20 text-center text-white font-normal justify-center py-8 cursor-pointer"
                   onClick={() => {
                     setActive(1);
                     setLastactive([
@@ -144,7 +147,7 @@ const Table = ({ onLastActiveDataChange }) => {
               </th>
               <th scope="col" className="px-6 py-3">
                 <div
-                  className="bg-gray-500 w-20 h-20 text-center text-white font-normal justify-center py-8 cursor-pointer"
+                  className="bg-gray-500  h-20 text-center text-white font-normal justify-center py-8 cursor-pointer"
                   onClick={() => {
                     setActive(2);
                     setLastactive([
@@ -164,7 +167,7 @@ const Table = ({ onLastActiveDataChange }) => {
               </th>
               <th scope="col" className="px-6 py-3">
                 <div
-                  className="bg-gray-500 w-20 h-20 text-center text-white font-normal justify-center py-8 cursor-pointer"
+                  className="bg-gray-500  h-20 text-center text-white font-normal justify-center py-8 cursor-pointer"
                   onClick={() => {
                     setActive(3);
                     setLastactive([
@@ -193,28 +196,28 @@ const Table = ({ onLastActiveDataChange }) => {
                 Monthly price
               </th>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 0 ? { color: "#1E4D91" } : {}}
               >
                 ₹ {isChecked ? 1000 : 100}{" "}
                 {/* {plan.type === "monthly" ? plan.price : plan.type.price} */}
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 1 ? { color: "#1E4D91" } : {}}
               >
                 ₹ {isChecked ? 2000 : 200}
                 {/* {plan.type === "monthly" ? plan.price : plan.type.price} */}
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 2 ? { color: "#1E4D91" } : {}}
               >
                 ₹ {isChecked ? 5000 : 500}
                 {/* {plan.type === "monthly" ? plan.price : plan.type.price} */}
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 3 ? { color: "#1E4D91" } : {}}
               >
                 ₹ {isChecked ? 7000 : 700}
@@ -230,25 +233,25 @@ const Table = ({ onLastActiveDataChange }) => {
                 Basic
               </th>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 0 ? { color: "#1E4D91" } : {}}
               >
                 Good
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 1 ? { color: "#1E4D91" } : {}}
               >
                 Good
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 2 ? { color: "#1E4D91" } : {}}
               >
                 Better
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 3 ? { color: "#1E4D91" } : {}}
               >
                 Best
@@ -257,52 +260,52 @@ const Table = ({ onLastActiveDataChange }) => {
             <tr className="bg-white border-b ">
               <th
                 scope="row"
-                className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-black"
+                className="px-6 py-2  font-medium text-gray-900 whitespace-nowrap dark:text-black"
               >
                 Resolution
               </th>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 0 ? { color: "#1E4D91" } : {}}
               >
                 480p
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 1 ? { color: "#1E4D91" } : {}}
               >
                 480p
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 2 ? { color: "#1E4D91" } : {}}
               >
                 1080p
               </td>
               <td
-                className="px-6 py-4"
+                className="px-6 py-4 text-center"
                 style={active === 3 ? { color: "#1E4D91" } : {}}
               >
                 4K+HDR
               </td>
             </tr>
-            <tr className="border-b ">
+            <tr className=" ">
               <th
                 scope="row"
-                className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-black"
+                className="px-6 py-2 font-medium text-gray-900 dark:text-black"
               >
                 Devices you can use to watch
               </th>
               <td className="px-6 py-2">
                 <div className="flex flex-col m-auto">
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 0 ? { color: "#1E4D91" } : {}}
                   >
                     Phone
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 0 ? { color: "#1E4D91" } : {}}
                   >
                     Tablet
@@ -314,25 +317,25 @@ const Table = ({ onLastActiveDataChange }) => {
               <td className="px-6 py-2">
                 <div className="flex flex-col m-auto">
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 1 ? { color: "#1E4D91" } : {}}
                   >
                     Phone
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 1 ? { color: "#1E4D91" } : {}}
                   >
                     Tablet
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 1 ? { color: "#1E4D91" } : {}}
                   >
                     Computer
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 1 ? { color: "#1E4D91" } : {}}
                   >
                     TV
@@ -342,25 +345,25 @@ const Table = ({ onLastActiveDataChange }) => {
               <td className="px-6 py-2">
                 <div className="flex flex-col m-auto">
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 2 ? { color: "#1E4D91" } : {}}
                   >
                     Phone
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 2 ? { color: "#1E4D91" } : {}}
                   >
                     Tablet
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 2 ? { color: "#1E4D91" } : {}}
                   >
                     Computer
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 2 ? { color: "#1E4D91" } : {}}
                   >
                     TV
@@ -370,25 +373,25 @@ const Table = ({ onLastActiveDataChange }) => {
               <td className="px-6 py-2">
                 <div className="flex flex-col m-auto">
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 3 ? { color: "#1E4D91" } : {}}
                   >
                     Phone
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 3 ? { color: "#1E4D91" } : {}}
                   >
                     Tablet
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 3 ? { color: "#1E4D91" } : {}}
                   >
                     Computer
                   </p>
                   <p
-                    className="py-3"
+                    className="py-3 text-center"
                     style={active === 3 ? { color: "#1E4D91" } : {}}
                   >
                     TV

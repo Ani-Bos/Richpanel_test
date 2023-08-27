@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import Table from "./Table"; 
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-const stripePromise = loadStripe("STRIPE_PUBLISHABLE_KEY");
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 function PaymentForm({ host }) {
   let navigate=useNavigate()
@@ -18,7 +18,7 @@ function PaymentForm({ host }) {
     const authToken = Cookies.get("auth-Tokensynex"); // Get the token from the cookie
     try {
       const response = await fetch(
-        "http://localhost:5000/pay/create-payment-intent",
+        `${host}/pay/create-payment-intent`,
         // "http://localhost:5000/pay/process-payment",
         {
           method: "POST",
@@ -54,25 +54,22 @@ function PaymentForm({ host }) {
         return;
       }
       if (paymentIntent.status === 'succeeded') {
-        const create = await fetch(
-          `${host}/api/plan/create-plan`,
-          {
-            method: "POST",
-            body: JSON.stringify({
-              isActive: true,
-              subscribe: lastActiveData[0].type,
-              type: lastActiveData[0].checked ? "yearly" : "monthly",
-              paymentInfo: paymentIntent,
-            }),
-            headers: {
-              authorization: authToken,
-            }
-          }
-        
-        );
-
+        console.log(lastActiveData)
+        const create = await fetch(`${host}/api/plan/create-plan`, {
+          method: "POST",
+          body: JSON.stringify({
+            isActive: true,
+            subscribe: lastActiveData[0].type,
+            type: lastActiveData[0].checked ? "yearly" : "monthly",
+            paymentInfo: paymentIntent,
+          }), 
+          headers:{
+            "Content-Type": "application/json",
+            'authorization': authToken,
+          },
+        });
+        console.log(await create.json());
      navigate('/success')
-
       }
     } catch (error) {
       console.error("Error submitting payment:", error);

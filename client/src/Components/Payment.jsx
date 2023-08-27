@@ -4,10 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "./PaymentForm";
 import { useLocation } from "react-router-dom";
 import Table from "./Table";
-import TestPayment from "./TestPayment";
-const stripePromise = loadStripe(
-  "pk_test_51Nj69ASHOFbuBWHfmt9DWtFAeZDyz08ODniPUsxjUXJ1SiGPs6Eo1IZXDSIa2wT3r9O4NAQiJRSctwpJGL9ooXsF00pQlgBjnZ"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const Payment = ({ host}) => {
 

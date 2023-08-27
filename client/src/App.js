@@ -14,11 +14,10 @@ import Success from "./Components/Success";
 
 
 function App() {
-  const host='http://localhost:5000'
+  const host='https://model_subscription_an2.onrender.com'
   const options = {
     // passing the client secret obtained from the server
-    clientSecret:
-      "sk_test_51Nj69ASHOFbuBWHfuaaWtY2xflqnPF7AYOrsmH8oHxB8v2WXIWwg5JqS9et4BIPrz9Pg5sWV4sQBtYBMAIXEuxUf00wmPPKFYo",
+    clientSecret: process.env.REACT_APP_STRIPE_SECRET_KEY,
   };
 
   return (
