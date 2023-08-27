@@ -14,7 +14,7 @@ import Success from "./Components/Success";
 
 
 function App() {
-  const host='https://model_subscription_an2.onrender.com'
+  const host = "https://model-subscription-an2.onrender.com";
   const options = {
     // passing the client secret obtained from the server
     clientSecret: process.env.REACT_APP_STRIPE_SECRET_KEY,
