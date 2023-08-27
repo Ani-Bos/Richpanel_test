@@ -6,7 +6,7 @@ import path from "path";
 import http from "http";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
-import mongoconnect from "./db.js";
+// import mongoconnect from "./db.js";
 import filter from "./Middleware/Middleware.js";
 import user from "./Routes/AuthRoute.js";
 import SubscriptionRouter from './Routes/SubscriptionRoute.js'
@@ -18,7 +18,7 @@ import PlanRoute from './Routes/Plan.js'
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const dburl =
-  "mongodb+srv://<user>:<password>@cluster0.jzadva4.mongodb.net/?retryWrites=true&w=majority";;
+  `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.jzadva4.mongodb.net/?retryWrites=true&w=majority`;
 
 const app = express();
 app.use(cors());
